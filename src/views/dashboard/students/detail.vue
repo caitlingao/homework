@@ -70,11 +70,11 @@
       <el-row>
         <el-table :data="homeworks">
           <el-table-column fixed label="作业" prop="name" align="center"></el-table-column>
-          <el-table-column fixed label="完成情况" prop="status" align="center"><template slot-scope="scope">{{['', '未提交', '已完成'][scope.row.status]}}</template></el-table-column>
-          <el-table-column label="批改情况" prop="correct" align="center"><template slot-scope="scope">{{['', '未批改', '已批改'][scope.row.correct]}}</template></el-table-column>
-          <el-table-column label="优秀作业" prop="is_excellent" align="center"><template slot-scope="scope">{{['否', '是'][scope.row.is_excellent]}}</template></el-table-column>
+          <el-table-column fixed label="完成情况" prop="status" align="center"><template slot-scope="scope">{{['', '未完成', '已完成'][scope.row.status] || '-'}}</template></el-table-column>
+          <el-table-column label="批改情况" prop="correct" align="center"><template slot-scope="scope">{{['', '未批改', '已批改'][scope.row.correct] || '-'}}</template></el-table-column>
+          <el-table-column label="优秀作业" prop="is_excellent" align="center"><template slot-scope="scope">{{['否', '是'][scope.row.is_excellent] || '-'}}</template></el-table-column>
           <el-table-column label="操作" align="center"><template slot-scope="scope">
-              <el-link type="primary" @click='$router.push({ name: "homework-detail", params: { homeworkId : scope.row.id, }, } )'>详情</el-link>
+              <el-link v-if="scope.row.status === 2" type="primary" @click='$router.push({ name: "homework-detail", params: { homeworkId : scope.row.id, }, } )'>详情</el-link>
             </template></el-table-column>
         </el-table>
       </el-row>

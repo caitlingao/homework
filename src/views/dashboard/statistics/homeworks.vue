@@ -36,9 +36,9 @@
           <el-table-column label="学号" prop="no" align="center"></el-table-column>
           <el-table-column label="班级" prop="class_name" align="center"></el-table-column>
           <el-table-column label="作业情况" prop="homework_status" align="center"><template slot-scope="scope">{{['', '完成', '未完成'][scope.row.homework_status]}}</template></el-table-column>
-          <el-table-column label="优秀作业" prop="is_excellent" align="center"><template slot-scope="scope">{{['否', '是'][scope.row.is_excellent]}}</template></el-table-column>
+          <el-table-column label="优秀作业" prop="is_excellent" align="center"><template slot-scope="scope">{{['否', '是'][scope.row.is_excellent] || '-'}}</template></el-table-column>
           <el-table-column label="操作" align="center"><template slot-scope="scope">
-              <el-link type="primary" @click='$router.push({ name: "user-detail", params: { studentId : scope.row.id, }, } )'>详情</el-link>
+              <el-link v-if="scope.row.homework_status === 1" type="primary" @click='$router.push({ name: "user-detail", params: { studentId : scope.row.id, }, } )'>详情</el-link>
             </template></el-table-column>
         </el-table>
         <el-pagination layout="total, sizes, prev, pager, next, jumper" :page-sizes="[5, 10, 20, 50]" :page-size="limit" @size-change='getDataList(1, $event)' :current-page="page" @current-change="getDataList($event)" :total="total" />

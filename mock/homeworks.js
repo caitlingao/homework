@@ -27,7 +27,7 @@ for (let i = 0; i < count; i++) {
     student_no: 'GK@integer(10000000, 99000000)',
     class_id: '@integer(1, 6)',
     class_name: function () { return `${this.class_id}班`; },
-    title: function () { return titleObj[i + 1]; },
+    title: function () { return titleObj[this.survey_id]; },
     content: baseContent,
     status: '@integer(1,2)',
     submitted_at: '@date',
