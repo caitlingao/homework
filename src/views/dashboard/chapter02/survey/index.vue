@@ -3,7 +3,7 @@
     <el-breadcrumb separator=">">
       <el-breadcrumb-item>第二次作业</el-breadcrumb-item>
     </el-breadcrumb>
-    <div class='maincontent'>
+    <div class='maincontent' v-loading='loading'>
       <el-row :gutter='20'>
         <div style="margin-left: 20px;">
           <h3>作业目的：</h3>
@@ -33,30 +33,50 @@
         </div>
         <div style="display: flex; justify-content: space-between; margin-top: 10px;">
           <div style="display: flex;">
-            <el-link type="primary" @click='$router.push({ name: "chapter02-survey-homework-detail", params: { homeworkId : 1, }, } )'>
-              <h1>第二周作业：产品思维与产品意识</h1>
-            </el-link>
+            <h1>{{detailForm.title}}</h1>
           </div>
           <div>
             <span>待批改</span>
           </div>
         </div>
-        <div style="margin: 10px 0;">
-          <p>案例背景 上周作业中所描述的用例为 —— Upark的园区运营人员在账单收缴业务中发送催款通知场景，......</p>
-        </div>
         <div style="margin-top: 10px;">
           <span style="color: #999;">2021-01-04</span>
-          <el-link type="primary" style="float: right;" @click='$router.push({ name: "chapter02-survey-homework-edit", params: { homeworkId: 1, }})'>编辑</el-link>
+          <el-link type="primary" style="float: right;" @click='$router.push({ name: "chapter02-survey-homework-edit", params: { homeworkId: 2, }})'>编辑</el-link>
         </div>
       </el-row>
 
-      <el-divider></el-divider>
+      <el-row>
+        <div style="width: 900px;">
+          <div v-html="detailForm.content"></div>
+        </div>
+      </el-row>
     </div>
   </div>
 </template>
 <script>
 
+import API from '@/utils/api';
+
 export default {
   name: 'chapter02-survey',
+  data() {
+    return {
+      loading: false,
+      detailForm: {},
+    };
+  },
+  methods: {
+    async getDetail() {
+      this.loading = true;
+      const res = await this.$axios({ method: 'GET', url: API.getHomeworkDetail, params: { id: 2, }, });
+      this.loading = false;
+      if (res && res.status === 200 && res.data && res.data.code === 0) {
+        this.detailForm = { ...this.detailForm, ...res.data.data, };
+      }
+    },
+  },
+  mounted() {
+    this.getDetail();
+  },
 }
 </script>

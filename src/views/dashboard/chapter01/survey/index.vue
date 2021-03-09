@@ -3,7 +3,7 @@
     <el-breadcrumb separator=">">
       <el-breadcrumb-item>第一次作业</el-breadcrumb-item>
     </el-breadcrumb>
-    <div class='maincontent'>
+    <div class='maincontent' v-loading='loading'>
       <el-row :gutter='20'>
         <div style="margin-left: 20px;">
           <h3>作业目的：</h3>
@@ -30,20 +30,21 @@
       <el-row>
         <div style="display: flex; justify-content: space-between;">
           <div style="display: flex;">
-            <el-link type="primary" @click='$router.push({ name: "chapter01-survey-homework-detail", params: { homeworkId : 1, }, } )'>
-              <h1>第一周作业：认识产品经理</h1>
-            </el-link>
+            <h1>{{detailForm.title}}</h1>
             <span style="margin-left: 10px; color: #67c23a">优秀</span>
           </div>
           <div>
             <span>已批改</span>
           </div>
         </div>
-        <div style="margin: 10px 0;">
-          <p>案例背景 上周作业中所描述的用例为 —— Upark的园区运营人员在账单收缴业务中发送催款通知场景，......</p>
-        </div>
         <div style="margin-top: 10px;">
           <span style="color: #999;">2021-01-04</span>
+        </div>
+      </el-row>
+
+      <el-row>
+        <div style="width: 900px;">
+          <div v-html="detailForm.content"></div>
         </div>
       </el-row>
 
@@ -68,7 +69,28 @@
 </template>
 <script>
 
+import API from '@/utils/api';
+
 export default {
   name: 'chapter01-survey',
+  data() {
+    return {
+      loading: false,
+      detailForm: {},
+    };
+  },
+  methods: {
+    async getDetail() {
+      this.loading = true;
+      const res = await this.$axios({ method: 'GET', url: API.getHomeworkDetail, params: { id: 1, }, });
+      this.loading = false;
+      if (res && res.status === 200 && res.data && res.data.code === 0) {
+        this.detailForm = { ...this.detailForm, ...res.data.data, };
+      }
+    },
+  },
+  mounted() {
+    this.getDetail();
+  },
 }
 </script>

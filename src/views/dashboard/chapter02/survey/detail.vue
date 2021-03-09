@@ -57,7 +57,7 @@ export default {
     goBack() { this.$router.go(-1); },
     async getDetail() {
       this.loading = true;
-      const res = await this.$axios({ method: 'GET', url: API.getHomeworkDetail, params: { id: this.$route.params.homeworkId, }, });
+      const res = await this.$axios({ method: 'GET', url: API.getHomeworkDetail, params: { id: 2, }, });
       this.loading = false;
       if (res && res.status === 200 && res.data && res.data.code === 0) {
         this.detailForm = { ...this.detailForm, ...res.data.data, };

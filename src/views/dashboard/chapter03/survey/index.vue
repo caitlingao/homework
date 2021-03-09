@@ -30,20 +30,23 @@
       <el-row>
         <div style="display: flex; justify-content: space-between;">
           <div style="display: flex;">
-            <el-link type="primary" @click='$router.push({ name: "chapter03-survey-homework-detail", params: { homeworkId : 1, }, } )'>
-              <h1>第三周作业：解决方案设计</h1>
-            </el-link>
+            <h1>{{detailForm.title}}</h1>
           </div>
           <div>
-            <span>草稿</span>
+            <span v-if="status">待批改</span>
+            <span v-else>草稿</span>
           </div>
-        </div>
-        <div style="margin: 10px 0;">
-          <p>案例背景 上周作业中所描述的用例为 —— Upark的园区运营人员在账单收缴业务中发送催款通知场景，......</p>
         </div>
         <div style="margin-top: 10px;">
           <span style="color: #999;">2021-01-04</span>
-          <el-link type="primary" style="float: right;" @click='$router.push({ name: "chapter03-survey-homework-edit", params: { homeworkId: 1, }})'>编辑</el-link>
+          <el-link v-if="status" type="primary" style="float: right;" @click='onEdit'>编辑</el-link>
+          <el-link v-else type="primary" style="float: right;" @click='$router.push({ name: "chapter03-survey-homework-edit", params: { homeworkId: 1, }})'>编辑</el-link>
+        </div>
+      </el-row>
+
+      <el-row>
+        <div style="width: 900px;">
+          <div v-html="detailForm.content"></div>
         </div>
       </el-row>
     </div>
@@ -51,7 +54,35 @@
 </template>
 <script>
 
+import API from '@/utils/api';
+import { getStorage } from '@/utils/storage';
+
 export default {
   name: 'chapter03-survey',
+  data() {
+    return {
+      loading: false,
+      detailForm: {},
+      status: getStorage('homework-status')
+    };
+  },
+  methods: {
+    async getDetail() {
+      this.loading = true;
+      const res = await this.$axios({ method: 'GET', url: API.getHomeworkDetail, params: { id: 3, }, });
+      this.loading = false;
+      if (res && res.status === 200 && res.data && res.data.code === 0) {
+        this.detailForm = { ...this.detailForm, ...res.data.data, };
+      }
+    },
+    onEdit() {
+      this.$alert('作业内容审核中，暂时无法修改', '', {
+        confirmButtonText: '知道了'
+      });
+    }
+  },
+  mounted() {
+    this.getDetail();
+  },
 }
 </script>

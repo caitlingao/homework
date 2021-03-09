@@ -75,6 +75,7 @@ export const DASHBOARDMENUS = [
       { permissionId: '20005002', describe: '业务流程与产品文档', path: 'lesson', meta: { index: `/dashboard/chapter04/lesson`, }, name: 'chapter04-lesson', component: require('@/views/dashboard/chapter04/lesson/index').default, },
       { permissionId: '20005003', describe: '第四次作业', path: 'survey', meta: { index: `/dashboard/chapter04/survey`, }, name: 'chapter04-survey', component: require('@/views/dashboard/chapter04/survey/index').default, },
       { visible: false, permissionId: '20005004', describe: '作业', path: 'homeworks/new', meta: { index: `/dashboard/chapter04/survey/new`, }, name: 'chapter04-survey-homework-new', component: require('@/views/dashboard/chapter04/survey/new').default, },
+      { visible: false, permissionId: '20005005', describe: '作业', path: 'homeworks/:homeworkId/edit', meta: { index: `/dashboard/chapter04/survey/edit`, }, name: 'chapter04-survey-homework-edit', component: require('@/views/dashboard/chapter04/survey/edit').default, },
     ],
   },
   { disabled: true, permissionId: '20006001', describe: '第五章需求评审与产品发布', path: 'chapter04', icon: 'el-icon-s-claim', meta: { index: `/dashboard/chapter04/router` }, name: 'chapter05', component: require('@/views/dashboard/chapter04/router').default, },
