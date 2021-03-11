@@ -6,9 +6,11 @@
     </el-breadcrumb>
     <div class='maincontent'>
       <el-row>
-        <el-card shadow="hover">
-          <ve-line :data="homeworkStatistics.chartData" :extend="homeworkExtend" :settings='homeworkChartSettings' :tooltip='{ show: true, }'></ve-line>
-        </el-card>
+        <el-col :span="24">
+          <el-card shadow="hover">
+            <ve-line :data="homeworkStatistics.chartData" :extend="homeworkExtend" :settings='homeworkChartSettings' :tooltip='{ show: true, }'></ve-line>
+          </el-card>
+        </el-col>
       </el-row>
 
       <el-divider></el-divider>
@@ -66,7 +68,6 @@ export default {
       homeworkArr.push({ name: `第${i + 1}次作业`, value: i + 1, });
     }
     return {
-
       homeworkChartSettings: { labelMap: { finished_rate: '完成率', unfinished_rate: '未完成率', excellent_rate: '优秀作业率' }, legendName: { finished_rate: '完成率', unfinished_rate: '未完成率', excellent_rate: '优秀作业率' }, },
       homeworkExtend: {
         xAxis: { boundaryGap: false, axisLabel: { rotate: 45, } },

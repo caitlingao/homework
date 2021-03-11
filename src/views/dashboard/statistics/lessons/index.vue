@@ -6,9 +6,11 @@
     </el-breadcrumb>
     <div class='maincontent'>
       <el-row>
-        <el-card shadow="hover">
-          <ve-line :data="chartData" :extend="extend" :settings='chartSettings' :tooltip='{ show: true, }'></ve-line>
-        </el-card>
+        <el-col :span="24">
+          <el-card shadow="hover">
+            <ve-line :data="chartData" :extend="extend" :settings='chartSettings' :tooltip='{ show: true, }'></ve-line>
+          </el-card>
+        </el-col>
       </el-row>
 
       <el-divider></el-divider>

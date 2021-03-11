@@ -29,6 +29,8 @@ export const DASHBOARDMENUS = [
   // 学员管理
   { permissionId: '20000201', describe: '学员管理', path: 'students', icon: 'el-icon-s-custom', meta: { index: `/dashboard/students`, keepAlive: true }, name: 'students', component: require('@/views/dashboard/students/index').default, },
   { visible: false, permissionId: '20000202', describe: '学员管理', path: 'students/:studentId', meta: { index: `/dashboard/students`, }, name: 'user-detail', component: require('@/views/dashboard/students/detail').default, },
+  // 学员排名
+  { permissionId: '20000105', describe: '学员排名', path: 'statistics/ranking', icon: 'el-icon-s-custom', meta: { index: `/dashboard/statistics/ranking`, keepAlive: true }, name: 'statistics-ranking', component: require('@/views/dashboard/statistics/ranking/index').default, },
 
   // 作业管理
   { permissionId: '20000301', describe: '作业管理', path: 'homeworks', icon: 'el-icon-s-claim', meta: { index: `/dashboard/homeworks`, keepAlive: true }, name: 'homeworks', component: require('@/views/dashboard/homeworks/index').default, },
@@ -47,7 +49,6 @@ export const DASHBOARDMENUS = [
       { permissionId: '20000102', describe: '等级维度', path: 'grade', meta: { index: `/dashboard/statistics/grade`, }, name: 'statistics-grade', component: require('@/views/dashboard/statistics/grade/index').default, },
       { permissionId: '20000103', describe: '班级维度', path: 'groups', meta: { index: `/dashboard/statistics/groups`, }, name: 'statistics-groups', component: require('@/views/dashboard/statistics/groups/index').default, },
       { permissionId: '20000104', describe: '作业维度', path: 'homeworks', meta: { index: `/dashboard/statistics/homeworks`, }, name: 'statistics-homeworks', component: require('@/views/dashboard/statistics/homeworks/index').default, },
-      { permissionId: '20000105', describe: '学员排名', path: 'ranking', meta: { index: `/dashboard/statistics/ranking`, }, name: 'statistics-ranking', component: require('@/views/dashboard/statistics/ranking/index').default, },
     ]
   },
 
