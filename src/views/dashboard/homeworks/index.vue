@@ -1,7 +1,7 @@
 <template>
   <div data-page='lesson-user-list'>
     <el-breadcrumb separator=">">
-      <el-breadcrumb-item>学员列表</el-breadcrumb-item>
+      <el-breadcrumb-item>作业列表</el-breadcrumb-item>
     </el-breadcrumb>
     <div class='maincontent'>
       <el-row type='flex' :gutter='20'>

@@ -22,21 +22,43 @@ const users = {
     roles: ['teacher'],
     name: 'Teacher',
     rolePermissions: {
-      permissions: [{ permissionId: '20000011', describe: '概况' }, { permissionId: '20000201', describe: '学员管理' },]
+      permissions: [
+        { permissionId: '20000011', describe: '概况' },
+        { permissionId: '20000201', describe: '学员管理' },
+        { permissionId: '20000100', describe: '统计管理' },
+        { permissionId: '20000101', describe: '课程维度' },
+        { permissionId: '20000102', describe: '等级维度' },
+        { permissionId: '20000104', describe: '作业维度' },
+        { permissionId: '20000105', describe: '学员排名' },
+      ]
     },
   },
   'admin-token': {
     roles: ['admin'],
     name: 'Admin',
     rolePermissions: {
-      permissions: [{ permissionId: '20000011', describe: '概况' }, { permissionId: '20000201', describe: '学员管理' },]
+      permissions: [
+        { permissionId: '20000011', describe: '概况' },
+        { permissionId: '20000201', describe: '学员管理' },
+        { permissionId: '20000100', describe: '统计管理' },
+        { permissionId: '20000101', describe: '课程维度' },
+        { permissionId: '20000102', describe: '等级维度' },
+        { permissionId: '20000103', describe: '班级维度' },
+        { permissionId: '20000104', describe: '作业维度' },
+        { permissionId: '20000105', describe: '学员排名' },
+      ]
     },
   },
   'assistant-token': {
     roles: ['assistant'],
     name: 'Assistant',
     rolePermissions: {
-      permissions: [{ permissionId: '20000011', describe: '概况' }, { permissionId: '20000301', describe: '作业管理' },]
+      permissions: [
+        { permissionId: '20000011', describe: '概况' },
+        { permissionId: '20000301', describe: '作业管理' },
+        { permissionId: '20000100', describe: '统计管理' },
+        { permissionId: '20000104', describe: '作业维度' },
+      ]
     },
   },
   'reviewer-token': {

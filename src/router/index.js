@@ -20,12 +20,11 @@ NProgress.configure({ showSpinner: false });
 export const DASHBOARDMENUS = [
   // 首页概况
   { permissionId: '20000011', describe: '首页概况', path: 'home', icon: 'el-icon-s-home', meta: { index: `/dashboard/home`, }, name: 'dashboard', component: require('@/views/dashboard/home').default, },
-
-  // 统计
-  { visible: false, permissionId: '20000101', describe: '以课程维度查看学员信息', path: 'statistics/lessons', meta: { index: `/dashboard/statistics/lessons`, }, name: 'statistics-lessons', component: require('@/views/dashboard/statistics/lessons').default, },
-  { visible: false, permissionId: '20000102', describe: '以等级维度查看学习情况', path: 'statistics/grade', meta: { index: `/dashboard/statistics/grade`, }, name: 'statistics-grade', component: require('@/views/dashboard/statistics/grade').default, },
-  { visible: false, permissionId: '20000103', describe: '以班级维度查看学习情况', path: 'statistics/groups', meta: { index: `/dashboard/statistics/groups`, }, name: 'statistics-groups', component: require('@/views/dashboard/statistics/groups').default, },
-  { visible: false, permissionId: '20000104', describe: '以作业维度查看学习情况', path: 'statistics/homeworks', meta: { index: `/dashboard/statistics/homeworks`, }, name: 'statistics-homeworks', component: require('@/views/dashboard/statistics/homeworks').default, },
+  // // 统计
+  // { visible: false, permissionId: '20000101', describe: '以课程维度查看学员信息', path: 'statistics/lessons', meta: { index: `/dashboard/statistics/lessons`, }, name: 'statistics-lessons', component: require('@/views/dashboard/statistics/lessons').default, },
+  // { visible: false, permissionId: '20000102', describe: '以等级维度查看学习情况', path: 'statistics/grade', meta: { index: `/dashboard/statistics/grade`, }, name: 'statistics-grade', component: require('@/views/dashboard/statistics/grade').default, },
+  // { visible: false, permissionId: '20000103', describe: '以班级维度查看学习情况', path: 'statistics/groups', meta: { index: `/dashboard/statistics/groups`, }, name: 'statistics-groups', component: require('@/views/dashboard/statistics/groups').default, },
+  // { visible: false, permissionId: '20000104', describe: '以作业维度查看学习情况', path: 'statistics/homeworks', meta: { index: `/dashboard/statistics/homeworks`, }, name: 'statistics-homeworks', component: require('@/views/dashboard/statistics/homeworks').default, },
 
   // 学员管理
   { permissionId: '20000201', describe: '学员管理', path: 'students', icon: 'el-icon-s-custom', meta: { index: `/dashboard/students`, keepAlive: true }, name: 'students', component: require('@/views/dashboard/students/index').default, },
@@ -39,7 +38,20 @@ export const DASHBOARDMENUS = [
   { permissionId: '20000401', describe: '审核管理', path: 'reviews', icon: 'el-icon-s-claim', meta: { index: `/dashboard/reviews`, keepAlive: true }, name: 'reviews', component: require('@/views/dashboard/reviews/index').default, },
   { visible: false, permissionId: '20000402', describe: '审核管理', path: 'reviews/:homeworkId', meta: { index: `/dashboard/reviews`, }, name: 'review-detail', component: require('@/views/dashboard/reviews/detail').default, },
 
-  // 学员
+  // 统计
+  {
+    permissionId: '20000100', describe: '统计管理', path: 'statistics', icon: 'el-icon-s-claim', component: require('@/views/dashboard/statistics/router').default,
+    children: [
+      // 统计
+      { permissionId: '20000101', describe: '课程维度', path: 'lessons', meta: { index: `/dashboard/statistics/lessons`, }, name: 'statistics-lessons', component: require('@/views/dashboard/statistics/lessons/index').default, },
+      { permissionId: '20000102', describe: '等级维度', path: 'grade', meta: { index: `/dashboard/statistics/grade`, }, name: 'statistics-grade', component: require('@/views/dashboard/statistics/grade/index').default, },
+      { permissionId: '20000103', describe: '班级维度', path: 'groups', meta: { index: `/dashboard/statistics/groups`, }, name: 'statistics-groups', component: require('@/views/dashboard/statistics/groups/index').default, },
+      { permissionId: '20000104', describe: '作业维度', path: 'homeworks', meta: { index: `/dashboard/statistics/homeworks`, }, name: 'statistics-homeworks', component: require('@/views/dashboard/statistics/homeworks/index').default, },
+      { permissionId: '20000105', describe: '学员排名', path: 'ranking', meta: { index: `/dashboard/statistics/ranking`, }, name: 'statistics-ranking', component: require('@/views/dashboard/statistics/ranking/index').default, },
+    ]
+  },
+
+  // 成绩单
   { visible: false, permissionId: '20001001', describe: '成绩单', path: 'scores', meta: { index: `/dashboard/scores`, }, name: 'scores', component: require('@/views/dashboard/scores/index').default, },
 
   // 课程章节

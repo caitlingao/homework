@@ -24,14 +24,6 @@
           </el-card>
         </el-col>
       </el-row>
-
-      <el-alert title="各图表点击曲线拐点可查看统计数据详情" type="success" :closable="false" style="margin: 10px 0;"></el-alert>
-
-      <el-row>
-        <el-card shadow="hover">
-          <ve-line :data="homeworkStatistics.chartData" :events="homeworkChartEvents" :extend="homeworkExtend" :settings='homeworkChartSettings' :tooltip='{ show: true, }'></ve-line>
-        </el-card>
-      </el-row>
     </div>
   </div>
 </template>
@@ -43,29 +35,8 @@ import 'echarts/lib/component/title';
 export default {
   name: 'dashboard-assistant',
   data() {
-    var self = this;
-    this.chartEvents = {
-      click: function (e) {
-        self.name = e.name;
-        console.log(e);
-      }
-    };
     return {
       statisitcs: {},
-      homeworkChartSettings: { labelMap: { finished_rate: '完成率', unfinished_rate: '未完成率', excellent_rate: '优秀作业率' }, legendName: { finished_rate: '完成率', unfinished_rate: '未完成率', excellent_rate: '优秀作业率' }, },
-      homeworkChartEvents: {
-        click(e) {
-          self.homeworkStudentsClicked(e);
-        }
-      },
-      homeworkExtend: {
-        xAxis: { boundaryGap: false, axisLabel: { rotate: 45, } },
-        series: { label: { show: false, position: "top" } },
-        title: { text: '按作业统计' }
-      },
-      homeworkStatistics: {
-        chartData: { columns: ['homework', 'finished_rate', 'unfinished_rate', 'excellent_rate'], rows: [], },
-      },
     };
   },
   methods: {
@@ -76,27 +47,9 @@ export default {
         this.statisitcs = res.data.data;
       }
     },
-
-    // 按作业统计
-    async getHomeworkStatistics() {
-      const res = await this.$axios({ method: 'GET', url: API.getHomeworkStatistics, });
-      if (res && res.status === 200 && res.data && res.data.code === 0) {
-        this.homeworkStatistics.chartData.rows = res.data.data;
-      }
-    },
-
-    homeworkStudentsClicked(e) {
-      let homeworkObj = {};
-      for (let i = 0; i < 10; i++) {
-        homeworkObj[`第${i + 1}次作业`] = i + 1;
-      }
-      const routeData = this.$router.resolve({ name: 'statistics-homeworks', query: { homework: homeworkObj[e.value[0]] } });
-      window.open(routeData.href, '_blank');
-    },
   },
   mounted() {
     this.getBasicStatistics();
-    this.getHomeworkStatistics();
   },
 }
 </script>
